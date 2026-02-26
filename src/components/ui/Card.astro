@@ -9,7 +9,7 @@ const Tag = as;
 ---
 <Tag
   {...rest}
-  class={`rounded-card border border-border bg-white p-8 transition-all duration-normal ease-power2-out hover:-translate-y-1 hover:border-primary hover:shadow-soft focus-within:-translate-y-1 focus-within:border-primary focus-within:shadow-soft ${className}`.trim()}
+  class={`rounded-card border border-border bg-white p-8 transition-all duration-normal ease-power2-out hover:-translate-y-1 hover:border-primary hover:shadow-soft focus-within:-translate-y-1 focus-within:border-primary focus-within:shadow-soft focus-visible:-translate-y-1 focus-visible:border-primary focus-visible:shadow-soft data-[active=true]:-translate-y-1 data-[active=true]:border-primary data-[active=true]:shadow-soft ${className}`.trim()}
 >
   <slot />
 </Tag>

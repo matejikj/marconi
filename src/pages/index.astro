@@ -9,6 +9,7 @@ import CertificationsSection from "../components/sections/homepage/Certification
 import SynergySection from "../components/sections/homepage/SynergySection.astro";
 import FutureSection from "../components/sections/homepage/FutureSection.astro";
 import ContactSection from "../components/sections/homepage/ContactSection.astro";
+import HomepageMotionRuntime from "../components/islands/HomepageMotionRuntime.astro";
 import {
   certificationsContent,
   contactContent,
@@ -32,4 +33,5 @@ import {
   <SynergySection {...synergyContent} />
   <FutureSection {...futureContent} />
   <ContactSection contact={contactContent} />
+  <HomepageMotionRuntime />
 </BaseLayout>

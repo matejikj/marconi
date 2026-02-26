@@ -11,7 +11,7 @@ const { heading, body, items } = Astro.props;
 ---
 <Section id="certifikace" variant="light" spacing="md" borderedTop={true}>
   <div class="grid gap-8 lg:grid-cols-[1fr_1fr] lg:gap-12">
-    <div class="space-y-5">
+    <div class="space-y-5" data-reveal>
       <p class="font-heading text-xs uppercase tracking-[0.16em] text-primary">Kvalita a bezpecnost</p>
       <h2 class="max-w-prose">{heading}</h2>
       <p class="text-prose">{body}</p>
@@ -19,8 +19,8 @@ const { heading, body, items } = Astro.props;
 
     <ul class="grid gap-4 sm:grid-cols-2" aria-label="Certifikace">
       {
-        items.map((item) => (
-          <li class="rounded-card border border-border bg-white px-5 py-4 text-base font-semibold text-text-main shadow-sm">
+        items.map((item, index) => (
+          <li class="rounded-card border border-border bg-white px-5 py-4 text-base font-semibold text-text-main shadow-sm" data-reveal data-reveal-delay={String(Math.min(index + 1, 6))}>
             {item}
           </li>
         ))
@@ -28,4 +28,3 @@ const { heading, body, items } = Astro.props;
     </ul>
   </div>
 </Section>
-

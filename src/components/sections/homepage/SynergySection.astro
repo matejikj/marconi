@@ -10,7 +10,7 @@ const { heading, paragraphs } = Astro.props;
 ---
 <Section id="synergie" variant="dark" spacing="md" borderedTop={true}>
   <div class="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
-    <div class="space-y-5">
+    <div class="space-y-5" data-reveal>
       <p class="font-heading text-xs uppercase tracking-[0.16em] text-primary">Synergie TTC</p>
       <h2 class="max-w-prose text-white">{heading}</h2>
       <div class="max-w-prose space-y-4">
@@ -18,7 +18,7 @@ const { heading, paragraphs } = Astro.props;
       </div>
     </div>
 
-    <div class="rounded-[20px] border border-white/10 bg-white/5 p-6">
+    <div class="rounded-[20px] border border-white/10 bg-white/5 p-6" data-reveal data-reveal-delay="2">
       <p class="mb-4 text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
         Skupinove zazemi (staticky placeholder)
       </p>
@@ -46,4 +46,3 @@ const { heading, paragraphs } = Astro.props;
     </div>
   </div>
 </Section>
-

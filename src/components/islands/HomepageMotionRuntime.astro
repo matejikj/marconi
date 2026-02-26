@@ -1,0 +1,19 @@
+<script>
+  let cleanup;
+
+  const boot = async () => {
+    const { initHomepageMotion } = await import("../../lib/motion/homepage");
+    cleanup = initHomepageMotion();
+  };
+
+  boot();
+
+  window.addEventListener(
+    "pagehide",
+    () => {
+      if (typeof cleanup === "function") cleanup();
+    },
+    { once: true },
+  );
+</script>
+

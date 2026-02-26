@@ -10,7 +10,7 @@ const { heading, paragraphs } = Astro.props;
 ---
 <Section id="budoucnost" variant="light" spacing="md" borderedTop={true}>
   <div class="grid gap-8 lg:grid-cols-[1fr_0.85fr] lg:gap-12">
-    <div class="space-y-5">
+    <div class="space-y-5" data-reveal>
       <p class="font-heading text-xs uppercase tracking-[0.16em] text-primary">Pohled do budoucnosti</p>
       <h2 class="max-w-prose">{heading}</h2>
       <div class="max-w-prose space-y-4">
@@ -18,7 +18,7 @@ const { heading, paragraphs } = Astro.props;
       </div>
     </div>
 
-    <aside class="rounded-[20px] border border-border bg-bg-alt p-8">
+    <aside class="rounded-[20px] border border-border bg-bg-alt p-8" data-reveal data-reveal-delay="2">
       <div class="mb-5 h-0.5 w-16 bg-primary"></div>
       <p class="text-sm font-semibold uppercase tracking-[0.12em] text-text-muted">Principy navrhu</p>
       <ul class="mt-4 space-y-3 text-body text-text-secondary">
@@ -29,4 +29,3 @@ const { heading, paragraphs } = Astro.props;
     </aside>
   </div>
 </Section>
-

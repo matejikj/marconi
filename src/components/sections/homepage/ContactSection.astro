@@ -14,7 +14,7 @@ const mailHref = `mailto:${contact.email}`;
 ---
 <Section id="kontakt" variant="alt" spacing="md" borderedTop={true}>
   <div class="grid gap-8 lg:grid-cols-[1fr_0.95fr] lg:gap-12">
-    <div class="space-y-5">
+    <div class="space-y-5" data-reveal>
       <p class="font-heading text-xs uppercase tracking-[0.16em] text-primary">Kontakt</p>
       <h2 class="max-w-prose">{heading}</h2>
       <p class="text-prose">
@@ -24,7 +24,7 @@ const mailHref = `mailto:${contact.email}`;
       <Button href={mailHref}>{contact.ctaLabel}</Button>
     </div>
 
-    <address class="not-italic rounded-[20px] border border-border bg-white p-8 shadow-soft">
+    <address class="not-italic rounded-[20px] border border-border bg-white p-8 shadow-soft" data-reveal data-reveal-delay="2">
       <p class="mb-4 font-heading text-xs uppercase tracking-[0.16em] text-text-muted">
         TTC MARCONI s.r.o.
       </p>
@@ -45,4 +45,3 @@ const mailHref = `mailto:${contact.email}`;
     </address>
   </div>
 </Section>
-
