@@ -12,6 +12,7 @@ const { heading = "Kontaktujte nás.", contact } = Astro.props;
 const telHref = `tel:${contact.phone.replace(/\s+/g, "")}`;
 const mailHref = `mailto:${contact.email}`;
 const contactBgUrl = `${import.meta.env.BASE_URL}images/Futuristic_abstract_data_flow_background_flowing_t_d9d084ee8c.jpeg`;
+const logoUrl = `${import.meta.env.BASE_URL}images/logo.png`;
 ---
 <Section
   id="kontakt"
@@ -33,9 +34,14 @@ const contactBgUrl = `${import.meta.env.BASE_URL}images/Futuristic_abstract_data
     </div>
 
     <address class="not-italic rounded-[20px] border border-border bg-white p-8 shadow-soft" data-reveal data-reveal-delay="2">
-      <p class="mb-4 font-heading text-xs uppercase tracking-[0.16em] text-text-muted">
-        TTC MARCONI s.r.o.
-      </p>
+      <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <p class="font-heading text-xs uppercase tracking-[0.16em] text-text-muted">
+          TTC MARCONI s.r.o.
+        </p>
+        <span class="brand-logo-plate" aria-hidden="true">
+          <img src={logoUrl} alt="" class="brand-logo-img brand-logo-img--md" loading="lazy" decoding="async" />
+        </span>
+      </div>
       <div class="space-y-2 text-body text-text-secondary">
         <p class="text-text-main">{contact.company}</p>
         <p>{contact.street}</p>
