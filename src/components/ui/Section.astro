@@ -1,0 +1,41 @@
+---
+interface Props {
+  id?: string;
+  variant?: "light" | "alt" | "dark";
+  spacing?: "lg" | "md" | "sm";
+  class?: string;
+  containerClass?: string;
+  borderedTop?: boolean;
+}
+
+const {
+  id,
+  variant = "light",
+  spacing = "lg",
+  class: className = "",
+  containerClass = "",
+  borderedTop = false,
+} = Astro.props;
+
+const variantClass =
+  variant === "dark"
+    ? "bg-dark-section text-white"
+    : variant === "alt"
+      ? "bg-bg-alt text-text-main"
+      : "bg-white text-text-main";
+
+const spacingClass =
+  spacing === "sm"
+    ? "py-16 md:py-20"
+    : spacing === "md"
+      ? "py-20 md:py-24 lg:py-30"
+      : "py-24 md:py-30 lg:py-40";
+
+const borderClass = borderedTop ? "surface-divider" : "";
+---
+<section id={id} class={`${variantClass} ${spacingClass} ${borderClass} ${className}`.trim()}>
+  <div class={`content-shell ${containerClass}`.trim()}>
+    <slot />
+  </div>
+</section>
+

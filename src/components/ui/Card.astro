@@ -1,0 +1,15 @@
+---
+interface Props {
+  as?: "div" | "article" | "li";
+  class?: string;
+}
+
+const { as = "div", class: className = "" } = Astro.props;
+const Tag = as;
+---
+<Tag
+  class={`rounded-card border border-border bg-white p-8 transition-all duration-normal ease-power2-out hover:-translate-y-1 hover:border-primary hover:shadow-soft focus-within:-translate-y-1 focus-within:border-primary focus-within:shadow-soft ${className}`.trim()}
+>
+  <slot />
+</Tag>
+
