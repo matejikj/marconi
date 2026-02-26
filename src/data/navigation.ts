@@ -8,5 +8,4 @@ export const primaryNav: NavItem[] = [
   { label: "Infrastruktura", href: "#infrastruktura" },
   { label: "Sektory", href: "#sektory" },
   { label: "Zkušenost", href: "#zkusenost" },
-  { label: "Kontakt", href: "#kontakt" },
 ];

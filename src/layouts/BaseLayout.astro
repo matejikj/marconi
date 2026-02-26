@@ -13,6 +13,7 @@ const {
   title = "TTC MARCONI | Komunikační infrastruktura",
   description = "Systémová integrace a dodávky komunikačních sítí pro kritickou infrastrukturu.",
 } = Astro.props;
+const faviconHref = new URL("favicon.svg", Astro.url).href;
 ---
 <!doctype html>
 <html lang="cs">
@@ -22,6 +23,8 @@ const {
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="color-scheme" content="light" />
+    <link rel="icon" type="image/svg+xml" href={faviconHref} />
+    <link rel="icon" href={faviconHref} />
   </head>
   <body class="site-shell">
     <a class="sr-skip-link" href="#main-content">Přeskočit na obsah</a>

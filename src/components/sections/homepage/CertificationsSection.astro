@@ -8,8 +8,16 @@ interface Props {
 }
 
 const { heading, body, items } = Astro.props;
+const sectionBgUrl = `${import.meta.env.BASE_URL}images/Minimal_abstract_architectural_network_background__7c920616f0.jpeg`;
 ---
-<Section id="certifikace" variant="light" spacing="md" borderedTop={true}>
+<Section
+  id="certifikace"
+  variant="light"
+  spacing="md"
+  borderedTop={true}
+  class="section-surface-image section-surface-image--light-emphasis"
+  style={`--section-bg-image: url("${sectionBgUrl}")`}
+>
   <div class="grid gap-8 lg:grid-cols-[1fr_1fr] lg:gap-12">
     <div class="space-y-5" data-reveal>
       <p class="font-heading text-xs uppercase tracking-[0.16em] text-primary">Kvalita a bezpečnost</p>

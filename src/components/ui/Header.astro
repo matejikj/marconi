@@ -7,11 +7,14 @@ interface Props {
 }
 
 const { currentPath = "/" } = Astro.props;
+const homeHref = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
 ---
 <header class="site-header" data-header data-scrolled="false" data-mobile-nav-open="false">
   <div class="site-header__inner">
     <a
-      href="/"
+      href={homeHref}
       class="flex items-center gap-3 text-sm font-semibold tracking-[0.12em] text-text-main"
       aria-label="TTC MARCONI - domovská stránka"
     >

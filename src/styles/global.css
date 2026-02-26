@@ -273,6 +273,63 @@
     border-top: 1px solid var(--color-border);
   }
 
+  .section-surface-image {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .section-surface-image--hero {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.89)),
+      var(--section-bg-image);
+    background-size: cover, 145%;
+    background-position: center center, 50% 34%;
+  }
+
+  .section-surface-image--light {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.90)),
+      var(--section-bg-image);
+    background-size: cover, 122%;
+    background-position: center top, center top;
+  }
+
+  .section-surface-image--light-emphasis {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.79)),
+      var(--section-bg-image);
+    background-size: cover, 162%;
+    background-position: center top, center 18%;
+  }
+
+  .section-surface-image--contact {
+    background-image:
+      linear-gradient(rgba(247, 249, 251, 0.92), rgba(247, 249, 251, 0.94)),
+      var(--section-bg-image);
+    background-position: center center;
+  }
+
+  @media (max-width: 768px) {
+    .section-surface-image--hero {
+      background-size: cover, 185%;
+      background-position: center center, 50% 24%;
+    }
+
+    .section-surface-image--light {
+      background-size: cover, 145%;
+      background-position: center top, center 12%;
+    }
+
+    .section-surface-image--light-emphasis {
+      background-size: cover, 205%;
+      background-position: center top, center 20%;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.76), rgba(255, 255, 255, 0.82)),
+        var(--section-bg-image);
+    }
+  }
+
   [data-reveal] {
     opacity: 0;
     transform: translate3d(0, 24px, 0);

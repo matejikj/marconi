@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="TTC MARCONI">
+  <rect width="64" height="64" rx="16" fill="#0F1720" />
+  <circle cx="20" cy="20" r="6" fill="#01B5E5" />
+  <path d="M18 44V28h4l6 9 6-9h4v16h-4V35l-6 8-6-8v9z" fill="#FFFFFF" />
+</svg>

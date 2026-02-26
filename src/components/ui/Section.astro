@@ -15,6 +15,7 @@ const {
   class: className = "",
   containerClass = "",
   borderedTop = false,
+  ...rest
 } = Astro.props;
 
 const variantClass =
@@ -33,9 +34,8 @@ const spacingClass =
 
 const borderClass = borderedTop ? "surface-divider" : "";
 ---
-<section id={id} class={`${variantClass} ${spacingClass} ${borderClass} ${className}`.trim()}>
+<section {...rest} id={id} class={`${variantClass} ${spacingClass} ${borderClass} ${className}`.trim()}>
   <div class={`content-shell ${containerClass}`.trim()}>
     <slot />
   </div>
 </section>
-

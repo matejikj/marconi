@@ -11,8 +11,16 @@ interface Props {
 const { heading = "Kontaktujte nás.", contact } = Astro.props;
 const telHref = `tel:${contact.phone.replace(/\s+/g, "")}`;
 const mailHref = `mailto:${contact.email}`;
+const contactBgUrl = `${import.meta.env.BASE_URL}images/Futuristic_abstract_data_flow_background_flowing_t_d9d084ee8c.jpeg`;
 ---
-<Section id="kontakt" variant="alt" spacing="md" borderedTop={true}>
+<Section
+  id="kontakt"
+  variant="alt"
+  spacing="md"
+  borderedTop={true}
+  class="section-surface-image section-surface-image--contact"
+  style={`--section-bg-image: url("${contactBgUrl}")`}
+>
   <div class="grid gap-8 lg:grid-cols-[1fr_0.95fr] lg:gap-12">
     <div class="space-y-5" data-reveal>
       <p class="font-heading text-xs uppercase tracking-[0.16em] text-primary">Kontakt</p>
