@@ -1,0 +1,32 @@
+---
+import Card from "../../ui/Card.astro";
+import Section from "../../ui/Section.astro";
+
+interface Props {
+  heading: string;
+  body: string;
+  facts: string[];
+}
+
+const { heading, body, facts } = Astro.props;
+---
+<Section id="zkusenost" variant="alt" spacing="md" borderedTop={true}>
+  <div class="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
+    <div class="space-y-5">
+      <p class="font-heading text-xs uppercase tracking-[0.16em] text-primary">Zkusenost</p>
+      <h2 class="max-w-prose">{heading}</h2>
+      <p class="text-prose">{body}</p>
+    </div>
+
+    <div class="grid gap-4 sm:grid-cols-3 lg:grid-cols-1" aria-label="Hlavni fakta">
+      {
+        facts.map((fact) => (
+          <Card as="article" class="p-6">
+            <p class="text-base font-semibold text-text-main">{fact}</p>
+          </Card>
+        ))
+      }
+    </div>
+  </div>
+</Section>
+

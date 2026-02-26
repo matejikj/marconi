@@ -1,0 +1,48 @@
+---
+import Button from "../../ui/Button.astro";
+import Section from "../../ui/Section.astro";
+import type { ContactInfo } from "../../../data/homepage";
+
+interface Props {
+  heading?: string;
+  contact: ContactInfo;
+}
+
+const { heading = "Kontaktujte nas.", contact } = Astro.props;
+const telHref = `tel:${contact.phone.replace(/\s+/g, "")}`;
+const mailHref = `mailto:${contact.email}`;
+---
+<Section id="kontakt" variant="alt" spacing="md" borderedTop={true}>
+  <div class="grid gap-8 lg:grid-cols-[1fr_0.95fr] lg:gap-12">
+    <div class="space-y-5">
+      <p class="font-heading text-xs uppercase tracking-[0.16em] text-primary">Kontakt</p>
+      <h2 class="max-w-prose">{heading}</h2>
+      <p class="text-prose">
+        Pokud resite modernizaci, integraci nebo dlouhodoby provoz komunikacni infrastruktury,
+        muzeme navrhnout dalsi postup.
+      </p>
+      <Button href={mailHref}>{contact.ctaLabel}</Button>
+    </div>
+
+    <address class="not-italic rounded-[20px] border border-border bg-white p-8 shadow-soft">
+      <p class="mb-4 font-heading text-xs uppercase tracking-[0.16em] text-text-muted">
+        TTC MARCONI s.r.o.
+      </p>
+      <div class="space-y-2 text-body text-text-secondary">
+        <p class="text-text-main">{contact.company}</p>
+        <p>{contact.street}</p>
+        <p>{contact.city}</p>
+      </div>
+      <div class="mt-6 space-y-2">
+        <a class="ui-link-underline inline-block text-base font-semibold text-text-main" href={mailHref}>
+          {contact.email}
+        </a>
+        <br />
+        <a class="ui-link-underline inline-block text-base font-semibold text-text-main" href={telHref}>
+          {contact.phone}
+        </a>
+      </div>
+    </address>
+  </div>
+</Section>
+

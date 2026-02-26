@@ -1,0 +1,49 @@
+---
+import Section from "../../ui/Section.astro";
+
+interface Props {
+  heading: string;
+  paragraphs: string[];
+}
+
+const { heading, paragraphs } = Astro.props;
+---
+<Section id="synergie" variant="dark" spacing="md" borderedTop={true}>
+  <div class="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
+    <div class="space-y-5">
+      <p class="font-heading text-xs uppercase tracking-[0.16em] text-primary">Synergie TTC</p>
+      <h2 class="max-w-prose text-white">{heading}</h2>
+      <div class="max-w-prose space-y-4">
+        {paragraphs.map((paragraph) => <p class="text-slate-300">{paragraph}</p>)}
+      </div>
+    </div>
+
+    <div class="rounded-[20px] border border-white/10 bg-white/5 p-6">
+      <p class="mb-4 text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
+        Skupinove zazemi (staticky placeholder)
+      </p>
+      <svg viewBox="0 0 420 240" class="h-auto w-full" role="img" aria-label="Schema synergie TTC">
+        <defs>
+          <style>
+            {`
+              .s-line { stroke: rgba(255,255,255,0.22); stroke-width: 1.4; fill: none; }
+              .s-node { fill: rgba(255,255,255,0.04); stroke: rgba(255,255,255,0.18); stroke-width: 1.4; }
+              .s-node-active { fill: rgba(1,181,229,0.10); stroke: #01B5E5; }
+              .s-text { fill: #FFFFFF; font: 600 12px Inter, system-ui, sans-serif; }
+            `}
+          </style>
+        </defs>
+        <path class="s-line" d="M120 70 H210" />
+        <path class="s-line" d="M210 70 H300" />
+        <path class="s-line" d="M210 70 V160" />
+        <rect class="s-node s-node-active" x="62" y="46" rx="12" width="116" height="48" />
+        <text class="s-text" x="82" y="75">TTC MARCONI</text>
+        <rect class="s-node" x="184" y="46" rx="12" width="116" height="48" />
+        <text class="s-text" x="199" y="75">TTC Holding</text>
+        <rect class="s-node" x="244" y="136" rx="12" width="132" height="48" />
+        <text class="s-text" x="258" y="165">TTC Telekomunikace</text>
+      </svg>
+    </div>
+  </div>
+</Section>
+

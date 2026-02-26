@@ -1,0 +1,39 @@
+---
+import Card from "../../ui/Card.astro";
+import Section from "../../ui/Section.astro";
+import type { Sector } from "../../../data/homepage";
+
+interface Props {
+  heading: string;
+  intro: string;
+  items: Sector[];
+}
+
+const { heading, intro, items } = Astro.props;
+---
+<Section id="sektory" variant="light" spacing="lg" borderedTop={true}>
+  <div class="space-y-10">
+    <div class="space-y-5">
+      <p class="font-heading text-xs uppercase tracking-[0.16em] text-primary">Sektory</p>
+      <h2 class="max-w-prose">{heading}</h2>
+      <p class="text-prose">{intro}</p>
+    </div>
+
+    <ul class="grid gap-6 md:grid-cols-2 xl:grid-cols-3" aria-label="Sektory pusobeni">
+      {
+        items.map((sector) => (
+          <li>
+            <Card
+              as="article"
+              class="h-full border-t-2 border-t-transparent hover:bg-primary-05 focus-within:bg-primary-05 hover:[border-top-color:var(--color-primary)] focus-within:[border-top-color:var(--color-primary)]"
+            >
+              <h3 class="mb-3 text-xl">{sector.title}</h3>
+              <p>{sector.description}</p>
+            </Card>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Section>
+

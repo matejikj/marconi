@@ -1,0 +1,52 @@
+---
+import Button from "../../ui/Button.astro";
+import Card from "../../ui/Card.astro";
+import Section from "../../ui/Section.astro";
+import type { CTA } from "../../../data/homepage";
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  quickPoints: string[];
+  ctas: CTA[];
+}
+
+const { eyebrow, title, subtitle, quickPoints, ctas } = Astro.props;
+---
+<Section id="hero" variant="light" spacing="lg">
+  <div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+    <div class="space-y-8">
+      <p class="font-heading text-xs uppercase tracking-[0.16em] text-primary">{eyebrow}</p>
+      <h1 class="max-w-prose balance-text">{title}</h1>
+      <p class="text-prose text-body-lg">{subtitle}</p>
+
+      <div class="flex flex-col gap-4 xs:flex-row xs:flex-wrap">
+        {
+          ctas.map((cta) => (
+            <Button href={cta.href} variant={cta.variant ?? "primary"}>
+              {cta.label}
+            </Button>
+          ))
+        }
+      </div>
+    </div>
+
+    <Card as="article" class="bg-bg-alt">
+      <p class="mb-4 font-heading text-xs uppercase tracking-[0.16em] text-primary">
+        Klicove kompetence
+      </p>
+      <ul class="space-y-3" aria-label="Klicove kompetence TTC MARCONI">
+        {
+          quickPoints.map((point) => (
+            <li class="flex items-start gap-3 text-body text-text-secondary">
+              <span class="mt-2 inline-block h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true"></span>
+              <span>{point}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </Card>
+  </div>
+</Section>
+
