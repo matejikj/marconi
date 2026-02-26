@@ -1,18 +1,3 @@
-## Bonus: Průlet prompty (od startu po polish)
-
-Tuhle sekci můžeš použít jako:
-- samostatný blok 3-5 minut
-- backup slidy po Q&A
-- inspiraci pro interní workshop
-
-### Jak framingovat promptování kolegům
-
-Neukazuj „dokonalé prompty“. Ukazuj:
-- jak se zpřesňuje zadání v čase
-- jak agent dostává kontext a omezení
-- jak vypadá iterace po screenshot feedbacku
-- jak se prompty mění podle fáze projektu
-
 ### Prompt 1: Kontext + analýza draftů (před kódem)
 
 ```text
