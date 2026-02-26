@@ -20,9 +20,9 @@ const { heading, paragraphs } = Astro.props;
 
     <div class="rounded-[20px] border border-white/10 bg-white/5 p-6" data-reveal data-reveal-delay="2">
       <p class="mb-4 text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
-        Skupinove zazemi (staticky placeholder)
+        Skupinové zázemí (statický placeholder)
       </p>
-      <svg viewBox="0 0 420 240" class="h-auto w-full" role="img" aria-label="Schema synergie TTC">
+      <svg viewBox="0 0 420 240" class="h-auto w-full" role="img" aria-label="Schéma synergie TTC" style="forced-color-adjust: none;">
         <defs>
           <style>
             {`
@@ -33,15 +33,14 @@ const { heading, paragraphs } = Astro.props;
             `}
           </style>
         </defs>
-        <path class="s-line" d="M120 70 H210" />
-        <path class="s-line" d="M210 70 H300" />
-        <path class="s-line" d="M210 70 V160" />
-        <rect class="s-node s-node-active" x="62" y="46" rx="12" width="116" height="48" />
-        <text class="s-text" x="82" y="75">TTC MARCONI</text>
-        <rect class="s-node" x="184" y="46" rx="12" width="116" height="48" />
-        <text class="s-text" x="199" y="75">TTC Holding</text>
-        <rect class="s-node" x="244" y="136" rx="12" width="132" height="48" />
-        <text class="s-text" x="258" y="165">TTC Telekomunikace</text>
+        <path class="s-line" d="M178 70 H184" fill="none" stroke="rgba(255,255,255,0.22)" />
+        <path class="s-line" d="M242 94 V115 H310 V136" fill="none" stroke="rgba(255,255,255,0.22)" />
+        <rect class="s-node s-node-active" x="62" y="46" rx="12" width="116" height="48" fill="rgba(1,181,229,0.10)" stroke="#01B5E5" />
+        <text class="s-text" x="82" y="75" fill="#FFFFFF">TTC MARCONI</text>
+        <rect class="s-node" x="184" y="46" rx="12" width="116" height="48" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.18)" />
+        <text class="s-text" x="199" y="75" fill="#FFFFFF">TTC Holding</text>
+        <rect class="s-node" x="244" y="136" rx="12" width="132" height="48" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.18)" />
+        <text class="s-text" x="258" y="165" fill="#FFFFFF">TTC Telekomunikace</text>
       </svg>
     </div>
   </div>

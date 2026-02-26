@@ -108,28 +108,11 @@ function initInfrastructureMotion(reducedMotion: boolean): Cleanup {
   if (initialId) setActiveStep(initialId);
 
   const cleanupFns: Cleanup[] = [];
+  let destroyed = false;
 
-  if (diagram) {
-    const markLinesReady = () => {
-      diagram.dataset.linesReady = "true";
-    };
-
-    if (reducedMotion || typeof IntersectionObserver === "undefined") {
-      markLinesReady();
-    } else {
-      const lineObserver = new IntersectionObserver(
-        (entries) => {
-          if (entries.some((entry) => entry.isIntersecting)) {
-            markLinesReady();
-            lineObserver.disconnect();
-          }
-        },
-        { threshold: 0.2 },
-      );
-      lineObserver.observe(section);
-      cleanupFns.push(() => lineObserver.disconnect());
-    }
-  }
+  const markLinesReady = () => {
+    if (diagram) diagram.dataset.linesReady = "true";
+  };
 
   for (const [stepId, node] of nodeById.entries()) {
     const enter = () => {
@@ -168,43 +151,161 @@ function initInfrastructureMotion(reducedMotion: boolean): Cleanup {
     });
   }
 
-  let stepObserver: IntersectionObserver | null = null;
   const desktopMedia = window.matchMedia("(min-width: 1024px)");
 
-  const bindDesktopObserver = () => {
-    stepObserver?.disconnect();
-    stepObserver = null;
+  const initFallbackDesktopSync = () => {
+    let stepObserver: IntersectionObserver | null = null;
+    let lineObserver: IntersectionObserver | null = null;
 
-    if (!desktopMedia.matches || desktopStepCards.length === 0 || typeof IntersectionObserver === "undefined") {
-      return;
+    if (reducedMotion || !diagram || typeof IntersectionObserver === "undefined") {
+      markLinesReady();
+    } else {
+      lineObserver = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            markLinesReady();
+            lineObserver?.disconnect();
+          }
+        },
+        { threshold: 0.2 },
+      );
+      lineObserver.observe(section);
     }
 
-    stepObserver = new IntersectionObserver(
-      (entries) => {
-        const visibleEntries = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+    const bindDesktopObserver = () => {
+      stepObserver?.disconnect();
+      stepObserver = null;
 
-        const top = visibleEntries[0];
-        if (!top) return;
+      if (
+        !desktopMedia.matches ||
+        desktopStepCards.length === 0 ||
+        typeof IntersectionObserver === "undefined"
+      ) {
+        return;
+      }
 
-        const id = (top.target as HTMLElement).dataset.infraStep;
-        if (id) setActiveStep(id);
-      },
-      {
-        threshold: [0.2, 0.4, 0.6, 0.8],
-        rootMargin: "-12% 0px -25% 0px",
-      },
-    );
+      stepObserver = new IntersectionObserver(
+        (entries) => {
+          const visibleEntries = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
-    desktopStepCards.forEach((card) => stepObserver?.observe(card));
+          const top = visibleEntries[0];
+          if (!top) return;
+
+          const id = (top.target as HTMLElement).dataset.infraStep;
+          if (id) setActiveStep(id);
+        },
+        {
+          threshold: [0.2, 0.4, 0.6, 0.8],
+          rootMargin: "-12% 0px -25% 0px",
+        },
+      );
+
+      desktopStepCards.forEach((card) => stepObserver?.observe(card));
+    };
+
+    bindDesktopObserver();
+    desktopMedia.addEventListener("change", bindDesktopObserver);
+
+    return () => {
+      desktopMedia.removeEventListener("change", bindDesktopObserver);
+      stepObserver?.disconnect();
+      lineObserver?.disconnect();
+    };
   };
 
-  bindDesktopObserver();
-  desktopMedia.addEventListener("change", bindDesktopObserver);
-  cleanupFns.push(() => {
-    desktopMedia.removeEventListener("change", bindDesktopObserver);
-    stepObserver?.disconnect();
+  let disposeDesktopSync: Cleanup = () => {};
+
+  const setupGsapDesktopSync = async (): Promise<boolean> => {
+    if (reducedMotion || !diagram || desktopStepCards.length === 0) {
+      markLinesReady();
+      return false;
+    }
+
+    try {
+      const [{ gsap }, scrollTriggerModule] = await Promise.all([
+        import("gsap"),
+        import("gsap/ScrollTrigger"),
+      ]);
+      const ScrollTrigger =
+        "ScrollTrigger" in scrollTriggerModule
+          ? scrollTriggerModule.ScrollTrigger
+          : (scrollTriggerModule.default as typeof scrollTriggerModule.ScrollTrigger);
+
+      if (destroyed) return true;
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const mm = gsap.matchMedia();
+      mm.add("(min-width: 1024px)", () => {
+        const lineDrawStart = "top 72%";
+        const stepActiveStart = "top 58%";
+        const stepActiveEnd = "bottom 42%";
+
+        const linePaths = Array.from(diagram.querySelectorAll<SVGPathElement>(".infra-line"));
+        for (const path of linePaths) {
+          const length = typeof path.getTotalLength === "function" ? path.getTotalLength() : 680;
+          gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
+        }
+
+        const lineTimeline = gsap.timeline({
+          defaults: { duration: 0.9, ease: "power3.out" },
+          scrollTrigger: {
+            trigger: section,
+            start: lineDrawStart,
+            once: true,
+          },
+        });
+
+        if (linePaths.length === 0) {
+          markLinesReady();
+        } else {
+          linePaths.forEach((path, index) => {
+            lineTimeline.to(
+              path,
+              { strokeDashoffset: 0 },
+              index === 0 ? 0 : "<0.08",
+            );
+          });
+        }
+
+        const triggers = desktopStepCards.map((card) => {
+          const id = card.dataset.infraStep;
+          return ScrollTrigger.create({
+            trigger: card,
+            start: stepActiveStart,
+            end: stepActiveEnd,
+            onEnter: () => {
+              if (id) setActiveStep(id);
+            },
+            onEnterBack: () => {
+              if (id) setActiveStep(id);
+            },
+          });
+        });
+
+        return () => {
+          for (const trigger of triggers) trigger.kill();
+          lineTimeline.scrollTrigger?.kill();
+          lineTimeline.kill();
+        };
+      });
+
+      disposeDesktopSync = () => mm.revert();
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
+  if (reducedMotion) {
+    markLinesReady();
+  }
+
+  void setupGsapDesktopSync().then((ok) => {
+    if (destroyed || ok) return;
+    disposeDesktopSync = initFallbackDesktopSync();
   });
 
   for (const detail of mobileDetails) {
@@ -223,7 +324,11 @@ function initInfrastructureMotion(reducedMotion: boolean): Cleanup {
     cleanupFns.push(() => detail.removeEventListener("toggle", onToggle));
   }
 
-  return () => cleanupFns.forEach((fn) => fn());
+  return () => {
+    destroyed = true;
+    disposeDesktopSync();
+    cleanupFns.forEach((fn) => fn());
+  };
 }
 
 function initSectorCardInteractions(): Cleanup {
@@ -276,4 +381,3 @@ export function initHomepageMotion(): Cleanup {
 
   return () => cleanupFns.forEach((fn) => fn());
 }
-

@@ -12,16 +12,16 @@ const { heading, paragraphs, capabilityLabels } = Astro.props;
 <Section id="co-delame" variant="light" spacing="md" borderedTop={true}>
   <div class="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:gap-14">
     <div class="space-y-6" data-reveal>
-      <p class="font-heading text-xs uppercase tracking-[0.16em] text-primary">Co delame</p>
+      <p class="font-heading text-xs uppercase tracking-[0.16em] text-primary">Co děláme</p>
       <h2 class="max-w-prose">{heading}</h2>
       <div class="text-prose space-y-4">
         {paragraphs.map((paragraph) => <p>{paragraph}</p>)}
       </div>
     </div>
 
-    <aside aria-label="Rozsah kompetenci" class="rounded-card border border-border bg-bg-alt p-8" data-reveal data-reveal-delay="2">
+    <aside aria-label="Rozsah kompetencí" class="rounded-card border border-border bg-bg-alt p-8" data-reveal data-reveal-delay="2">
       <p class="mb-5 font-heading text-xs uppercase tracking-[0.16em] text-text-muted">
-        Rozsah kompetenci
+        Rozsah kompetencí
       </p>
       <ul class="grid gap-3 sm:grid-cols-2">
         {

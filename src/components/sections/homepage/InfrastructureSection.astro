@@ -24,7 +24,7 @@ const { heading, intro, closing, steps } = Astro.props;
       <div class="lg:sticky lg:top-28">
         <figure class="overflow-hidden rounded-[20px] border border-border bg-white p-6 shadow-soft" data-reveal data-reveal-delay="2">
           <figcaption class="mb-4 text-sm font-medium text-text-secondary">
-            Schema vrstvene komunikacni infrastruktury (SSR markup pro budouci interakci)
+            Schéma vrstvené komunikační infrastruktury (SSR markup pro budoucí interakci)
           </figcaption>
           <svg
             viewBox="0 0 560 420"
@@ -32,10 +32,11 @@ const { heading, intro, closing, steps } = Astro.props;
             role="img"
             aria-labelledby="infra-diagram-title infra-diagram-desc"
             data-infra-diagram
+            style="forced-color-adjust: none;"
           >
             <title id="infra-diagram-title">Diagram infrastruktury TTC MARCONI</title>
             <desc id="infra-diagram-desc">
-              Staticky diagram s peti uzly reprezentujicimi vrstvy reseni od IP komunikace po provozni dohled.
+              Statický diagram s pěti uzly reprezentujícími vrstvy řešení od IP komunikace po provozní dohled.
             </desc>
 
             <defs>
@@ -54,42 +55,41 @@ const { heading, intro, closing, steps } = Astro.props;
               </style>
             </defs>
 
-            <path class="infra-line" d="M100 100 H280" />
-            <path class="infra-line" d="M280 100 V170" />
-            <path class="infra-line" d="M280 170 H460" />
-            <path class="infra-line" d="M280 170 V250" />
-            <path class="infra-line" d="M280 250 H120" />
-            <path class="infra-line" d="M280 250 H440" />
-            <path class="infra-line" d="M280 250 V330" />
+            <path class="infra-line" d="M164 100 H216" fill="none" stroke="#111827" opacity="0.28" />
+            <path class="infra-line" d="M280 136 V170" fill="none" stroke="#111827" opacity="0.28" />
+            <path class="infra-line" d="M280 170 H396" fill="none" stroke="#111827" opacity="0.28" />
+            <path class="infra-line" d="M280 170 V250" fill="none" stroke="#111827" opacity="0.28" />
+            <path class="infra-line" d="M280 250 H200" fill="none" stroke="#111827" opacity="0.28" />
+            <path class="infra-line" d="M280 250 V294" fill="none" stroke="#111827" opacity="0.28" />
 
-            <g class="infra-node-group" data-step-node="ip" data-active="true" tabindex="0" focusable="true" role="button" aria-label="IP komunikacni reseni">
-              <rect class="infra-node infra-node--active" x="36" y="64" rx="12" ry="12" width="128" height="72" />
-              <text class="infra-meta" x="52" y="88">Vrstva 01</text>
-              <text class="infra-label" x="52" y="112">IP reseni</text>
+            <g class="infra-node-group" data-step-node="ip" data-active="true" tabindex="0" focusable="true" role="button" aria-label="IP komunikační řešení">
+              <rect class="infra-node infra-node--active" x="36" y="64" rx="12" ry="12" width="128" height="72" fill="rgba(1,181,229,0.05)" stroke="#01B5E5" />
+              <text class="infra-meta" x="52" y="88" fill="#6B7280">Vrstva 01</text>
+              <text class="infra-label" x="52" y="112" fill="#111827">IP řešení</text>
             </g>
 
-            <g class="infra-node-group" data-step-node="radio" data-active="false" tabindex="0" focusable="true" role="button" aria-label="Radiove site">
-              <rect class="infra-node" x="216" y="64" rx="12" ry="12" width="128" height="72" />
-              <text class="infra-meta" x="232" y="88">Vrstva 02</text>
-              <text class="infra-label" x="232" y="112">Radiove site</text>
+            <g class="infra-node-group" data-step-node="radio" data-active="false" tabindex="0" focusable="true" role="button" aria-label="Rádiové sítě">
+              <rect class="infra-node" x="216" y="64" rx="12" ry="12" width="128" height="72" fill="#FFFFFF" stroke="#D1D5DB" />
+              <text class="infra-meta" x="232" y="88" fill="#6B7280">Vrstva 02</text>
+              <text class="infra-label" x="232" y="112" fill="#111827">Rádiové sítě</text>
             </g>
 
-            <g class="infra-node-group" data-step-node="monitoring" data-active="false" tabindex="0" focusable="true" role="button" aria-label="Sitovy monitoring">
-              <rect class="infra-node" x="396" y="134" rx="12" ry="12" width="128" height="72" />
-              <text class="infra-meta" x="412" y="158">Vrstva 03</text>
-              <text class="infra-label" x="412" y="182">Monitoring</text>
+            <g class="infra-node-group" data-step-node="monitoring" data-active="false" tabindex="0" focusable="true" role="button" aria-label="Síťový monitoring">
+              <rect class="infra-node" x="396" y="134" rx="12" ry="12" width="128" height="72" fill="#FFFFFF" stroke="#D1D5DB" />
+              <text class="infra-meta" x="412" y="158" fill="#6B7280">Vrstva 03</text>
+              <text class="infra-label" x="412" y="182" fill="#111827">Monitoring</text>
             </g>
 
-            <g class="infra-node-group" data-step-node="security" data-active="false" tabindex="0" focusable="true" role="button" aria-label="Bezpecnost a ochrana dat">
-              <rect class="infra-node" x="56" y="214" rx="12" ry="12" width="144" height="72" />
-              <text class="infra-meta" x="72" y="238">Vrstva 04</text>
-              <text class="infra-label" x="72" y="262">Bezpecnost dat</text>
+            <g class="infra-node-group" data-step-node="security" data-active="false" tabindex="0" focusable="true" role="button" aria-label="Bezpečnost a ochrana dat">
+              <rect class="infra-node" x="56" y="214" rx="12" ry="12" width="144" height="72" fill="#FFFFFF" stroke="#D1D5DB" />
+              <text class="infra-meta" x="72" y="238" fill="#6B7280">Vrstva 04</text>
+              <text class="infra-label" x="72" y="262" fill="#111827">Bezpečnost dat</text>
             </g>
 
-            <g class="infra-node-group" data-step-node="ops" data-active="false" tabindex="0" focusable="true" role="button" aria-label="Provozni dohled 24 hodin denne 7 dni v tydnu">
-              <rect class="infra-node" x="204" y="294" rx="12" ry="12" width="152" height="72" />
-              <text class="infra-meta" x="220" y="318">Vrstva 05</text>
-              <text class="infra-label" x="220" y="342">Provozni dohled 24/7</text>
+            <g class="infra-node-group" data-step-node="ops" data-active="false" tabindex="0" focusable="true" role="button" aria-label="Provozní dohled 24 hodin denně 7 dní v týdnu">
+              <rect class="infra-node" x="204" y="294" rx="12" ry="12" width="152" height="72" fill="#FFFFFF" stroke="#D1D5DB" />
+              <text class="infra-meta" x="220" y="318" fill="#6B7280">Vrstva 05</text>
+              <text class="infra-label" x="220" y="342" fill="#111827">Provozní dohled 24/7</text>
             </g>
           </svg>
         </figure>
@@ -128,9 +128,9 @@ const { heading, intro, closing, steps } = Astro.props;
     <div class="space-y-4 lg:hidden">
       <div class="overflow-hidden rounded-[20px] border border-border bg-white p-4" data-reveal>
         <p class="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">
-          Diagram (mobilni fallback)
+          Diagram (mobilní fallback)
         </p>
-        <svg viewBox="0 0 320 220" class="h-auto w-full" role="img" aria-label="Staticky diagram infrastruktury">
+        <svg viewBox="0 0 320 220" class="h-auto w-full" role="img" aria-label="Statický diagram infrastruktury" style="forced-color-adjust: none;">
           <path d="M64 48 H160 V84 H256" fill="none" stroke="#111827" stroke-width="1.4" opacity="0.3" />
           <path d="M160 84 V134" fill="none" stroke="#111827" stroke-width="1.4" opacity="0.3" />
           <path d="M160 134 H64" fill="none" stroke="#111827" stroke-width="1.4" opacity="0.3" />
@@ -142,12 +142,12 @@ const { heading, intro, closing, steps } = Astro.props;
           <circle cx="64" cy="134" r="12" fill="#fff" stroke="#D1D5DB" />
           <circle cx="160" cy="184" r="12" fill="#fff" stroke="#D1D5DB" />
           <text x="24" y="22" fill="#6B7280" font-size="11" font-family="Inter, system-ui, sans-serif">
-            Vrstevnice infrastruktury
+            Vrstvenice infrastruktury
           </text>
         </svg>
       </div>
 
-      <div class="space-y-3" aria-label="Kroky infrastruktury - mobilni accordion">
+      <div class="space-y-3" aria-label="Kroky infrastruktury - mobilní akordeon">
         {
           steps.map((step, index) => (
             <details class="rounded-card border border-border bg-white open:border-primary data-[active=true]:border-primary data-[active=true]:bg-primary-05" data-infra-step={step.id} data-active={step.shortLabel === "01" ? "true" : "false"} open={step.shortLabel === "01"} data-reveal data-reveal-delay={String(Math.min(index + 1, 6))}>

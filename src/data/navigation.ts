@@ -4,9 +4,9 @@ export type NavItem = {
 };
 
 export const primaryNav: NavItem[] = [
-  { label: "Co delame", href: "#co-delame" },
+  { label: "Co děláme", href: "#co-delame" },
   { label: "Infrastruktura", href: "#infrastruktura" },
   { label: "Sektory", href: "#sektory" },
-  { label: "Zkusenost", href: "#zkusenost" },
+  { label: "Zkušenost", href: "#zkusenost" },
   { label: "Kontakt", href: "#kontakt" },
 ];

@@ -8,7 +8,7 @@ interface Props {
   contact: ContactInfo;
 }
 
-const { heading = "Kontaktujte nas.", contact } = Astro.props;
+const { heading = "Kontaktujte nás.", contact } = Astro.props;
 const telHref = `tel:${contact.phone.replace(/\s+/g, "")}`;
 const mailHref = `mailto:${contact.email}`;
 ---
@@ -18,8 +18,8 @@ const mailHref = `mailto:${contact.email}`;
       <p class="font-heading text-xs uppercase tracking-[0.16em] text-primary">Kontakt</p>
       <h2 class="max-w-prose">{heading}</h2>
       <p class="text-prose">
-        Pokud resite modernizaci, integraci nebo dlouhodoby provoz komunikacni infrastruktury,
-        muzeme navrhnout dalsi postup.
+        Pokud řešíte modernizaci, integraci nebo dlouhodobý provoz komunikační infrastruktury,
+        můžeme navrhnout další postup.
       </p>
       <Button href={mailHref}>{contact.ctaLabel}</Button>
     </div>
